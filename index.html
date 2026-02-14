@@ -1,0 +1,1047 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngobrol Pake HT | Solusi Sewa Handy Talkie Profesional</title>
+    <meta name="description"
+        content="Platform sewa HT terbaik untuk event, proyek, dan kebutuhan komunikasi Anda. Unit terawat, baterai awet, dan jangkauan luas.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Colors */
+            --bg-dark: #050507;
+            --bg-card: #0F0F12;
+            --bg-card-hover: #16161A;
+            --text-main: #FFFFFF;
+            --text-muted: #9CA3AF;
+            --primary: #6366F1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --accent: #A855F7;
+            --accent-glow: rgba(168, 85, 247, 0.4);
+            --border: #27272A;
+            --border-light: #3F3F46;
+
+            /* Gradients */
+            --gradient-main: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+            --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+
+            /* Effects */
+            --shadow-glow: 0 0 40px -10px var(--primary-glow);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --blur: blur(20px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .gradient-text {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 32px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: white;
+            box-shadow: 0 4px 20px -5px var(--primary-glow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -5px var(--primary-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-main);
+        }
+
+        /* Sticky Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 5, 7, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            /* Center the inner container */
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-main);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding-top: 180px;
+            padding-bottom: 120px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(5, 5, 7, 0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 99px;
+            color: #818CF8;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        /* Floating Stats */
+        .hero-stats {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .stat-bubble {
+            position: absolute;
+            background: rgba(15, 15, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .stat-bubble i {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .stat-bubble:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .stat-bubble:nth-child(2) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .stat-bubble:nth-child(3) {
+            top: 30%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-light);
+            background: var(--bg-card-hover);
+        }
+
+        .feature-card.col-span-2 {
+            grid-column: span 2;
+        }
+
+        .feature-card.row-span-2 {
+            grid-row: span 2;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #08080A 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.premium {
+            border-color: var(--primary);
+            box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.15);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-main);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            margin: 24px 0 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            margin: 32px 0;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .pricing-features li svg {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+
+        .marquee:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            width: 350px;
+            flex-shrink: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 99px;
+            background: var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(5, 5, 7, 0) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 32px;
+            padding: 64px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 80px 0 32px;
+            background: #08080A;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 64px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .footer-links h4 {
+            color: white;
+            font-size: 1.125rem;
+            margin-bottom: 24px;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            color: #52525B;
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                display: none;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card.col-span-2 {
+                grid-column: auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 24px;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                margin-top: 8px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav>
+        <div class="container">
+            <div class="nav-logo">
+                <i data-lucide="radio" style="color:var(--primary)"></i>
+                Ngobrol Pake HT
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">Fitur</a>
+                <a href="#pricing">Harga</a>
+                <a href="#testimonials">Testimoni</a>
+                <a href="#contact">Kontak</a>
+                <a href="login.html" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.9rem;">Client
+                    Login</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="badge">✨ Solusi Komunikasi #1 di Indonesia</span>
+            <h1>Sewa Handy Talkie <br><span class="gradient-text">Tanpa Drama</span></h1>
+            <p>Platform penyewaan HT profesional dengan unit berkualitas, baterai tahan lama, dan jangkauan super luas.
+                Cocok untuk EO, Konser, dan Proyek Lapangan.</p>
+            <div class="hero-btns">
+                <a href="https://wa.me/6285155228041" class="btn btn-primary">
+                    Hubungi WhatsApp <i data-lucide="arrow-right" size="18"></i>
+                </a>
+                <a href="#pricing" class="btn btn-secondary">
+                    Lihat Harga
+                </a>
+            </div>
+        </div>
+
+        <!-- Animated Floating Elements -->
+        <div class="hero-stats">
+            <div class="stat-bubble">
+                <i data-lucide="check-circle"></i>
+                <div>
+                    <div style="font-weight:700; color:white">500+ Unit</div>
+                    <div style="font-size:0.8rem; color:var(--text-muted)">Ready Stock</div>
+                </div>
+            </div>
+            <div class="stat-bubble">
+                <i data-lucide="activity"></i>
+                <div>
+                    <div style="font-weight:700; color:white">Jernih</div>
+                    <div style="font-size:0.8rem; color:var(--text-muted)">Audio Kualitas HD</div>
+                </div>
+            </div>
+            <div class="stat-bubble">
+                <i data-lucide="battery-charging"></i>
+                <div>
+                    <div style="font-weight:700; color:white">24 Jam</div>
+                    <div style="font-size:0.8rem; color:var(--text-muted)">Daya Tahan Baterai</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kenapa Memilih <span class="gradient-text">Ngobrol Pake HT?</span></h2>
+                <p>Kami memastikan komunikasi event Anda berjalan lancar tanpa gangguan teknis sekecil apapun.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="feature-card col-span-2">
+                    <div class="feature-icon"><i data-lucide="signal-high"></i></div>
+                    <h3>Jangkauan Ultra Luas</h3>
+                    <p>Teknologi dual-band terbaru memastikan sinyal tembus gedung bertingkat dan area basement.
+                        Komunikasi tim tetap lancar di segala medan.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="headphones"></i></div>
+                    <h3>Headset Gratis</h3>
+                    <p>Setiap penyewaan sudah termasuk headset hands-free kualitas premium yang nyaman digunakan
+                        seharian.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="clock"></i></div>
+                    <h3>Layanan 24/7</h3>
+                    <p>Tim support kami siap membantu kapanpun masalah terjadi, bahkan di tengah malam sekalipun.</p>
+                </div>
+                <div class="feature-card col-span-2">
+                    <div class="feature-icon"><i data-lucide="shield-check"></i></div>
+                    <h3>Garansi Unit Backup</h3>
+                    <p>Kami selalu menyertakan unit cadangan gratis di setiap pesanan untuk memastikan operasional Anda
+                        100% aman.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Harga Transparan</h2>
+                <p>Pilih paket yang sesuai dengan skala event Anda. Tidak ada biaya tersembunyi.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Lite -->
+                <div class="pricing-card">
+                    <h3>Hemat</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem">Untuk event indoor / praktis</p>
+                    <div class="price">Rp 20K<span>/unit</span></div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Unit KSUN X12 (Slim)</li>
+                        <li><i data-lucide="check"></i> USB Charging</li>
+                        <li><i data-lucide="check"></i> Ringan & Kompak</li>
+                        <li><i data-lucide="check"></i> Baterai Awet</li>
+                    </ul>
+                    <a href="https://wa.me/6285155228041?text=Halo%20saya%20mau%20sewa%20paket%20Hemat%20KSUN%20X12"
+                        class="btn btn-secondary" style="justify-content:center; width:100%">Pilih Paket</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card premium">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <h3>Event Pro</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem">Untuk konser & festival besar</p>
+                    <div class="price">Rp 150K<span>/unit</span></div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Unit Motorola CP1660</li>
+                        <li><i data-lucide="check"></i> Earhook Headset Premium</li>
+                        <li><i data-lucide="check"></i> Baterai Tahan 24 Jam</li>
+                        <li><i data-lucide="check"></i> Anti Air (IP54)</li>
+                        <li><i data-lucide="check"></i> Jangkauan 5 KM+</li>
+                    </ul>
+                    <a href="https://wa.me/6285155228041?text=Halo%20saya%20mau%20sewa%20paket%20Pro"
+                        class="btn btn-primary" style="justify-content:center; width:100%">Pilih Paket</a>
+                </div>
+
+                <!-- Custom -->
+                <div class="pricing-card">
+                    <h3>Project</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem">Sewa jangka panjang / bulanan</p>
+                    <div class="price">Custom<span>/nego</span></div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Unit Sesuai Request</li>
+                        <li><i data-lucide="check"></i> Maintenance Berkala</li>
+                        <li><i data-lucide="check"></i> Unit Pengganti Instant</li>
+                        <li><i data-lucide="check"></i> Training Penggunaan</li>
+                    </ul>
+                    <a href="https://wa.me/6285155228041?text=Halo%20saya%20butuh%20sewa%20untuk%20proyek"
+                        class="btn btn-secondary" style="justify-content:center; width:100%">Hubungi Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Marquee) -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kata Mereka</h2>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:24px; overflow:hidden; padding:20px 0;">
+            <div class="marquee">
+                <!-- Duplicate cards for seamless loop -->
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#4F46E5">AD</div>
+                        <div>
+                            <div style="font-weight:600">Andi Darmawan</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Project Manager, JavaJazz</div>
+                        </div>
+                    </div>
+                    <p>"Unitnya bersih, baterai awet banget sampe pagi. Pelayanan top, diantar tepat waktu!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#A855F7">SR</div>
+                        <div>
+                            <div style="font-weight:600">Siti Rahma</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Wedding Organizer</div>
+                        </div>
+                    </div>
+                    <p>"Sangat membantu koordinasi tim WO kami. Enggak ada noise sama sekali. Recomended!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#EC4899">BK</div>
+                        <div>
+                            <div style="font-weight:600">Budi Kurniawan</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Ketua Panitia 17an</div>
+                        </div>
+                    </div>
+                    <p>"Harganya murah tapi kualitas alatnya ga murahan. Adminnya juga ramah banget."</p>
+                </div>
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#14B8A6">DR</div>
+                        <div>
+                            <div style="font-weight:600">Dina Riaty</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Event Campus</div>
+                        </div>
+                    </div>
+                    <p>"Thanks Ngobrol Pake HT! Acara pensi kami sukses besar karena komunikasi lancar jaya."</p>
+                </div>
+                <!-- Cloning for marquee effect -->
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#4F46E5">AD</div>
+                        <div>
+                            <div style="font-weight:600">Andi Darmawan</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Project Manager, JavaJazz</div>
+                        </div>
+                    </div>
+                    <p>"Unitnya bersih, baterai awet banget sampe pagi. Pelayanan top, diantar tepat waktu!"</p>
+                </div>
+            </div>
+            <div class="marquee" aria-hidden="true">
+                <!-- Second copy for seamlessness -->
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#4F46E5">AD</div>
+                        <div>
+                            <div style="font-weight:600">Andi Darmawan</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Project Manager, JavaJazz</div>
+                        </div>
+                    </div>
+                    <p>"Unitnya bersih, baterai awet banget sampe pagi. Pelayanan top, diantar tepat waktu!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#A855F7">SR</div>
+                        <div>
+                            <div style="font-weight:600">Siti Rahma</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Wedding Organizer</div>
+                        </div>
+                    </div>
+                    <p>"Sangat membantu koordinasi tim WO kami. Enggak ada noise sama sekali. Recomended!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#EC4899">BK</div>
+                        <div>
+                            <div style="font-weight:600">Budi Kurniawan</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Ketua Panitia 17an</div>
+                        </div>
+                    </div>
+                    <p>"Harganya murah tapi kualitas alatnya ga murahan. Adminnya juga ramah banget."</p>
+                </div>
+                <div class="review-card">
+                    <div class="user-info">
+                        <div class="avatar" style="background:#14B8A6">DR</div>
+                        <div>
+                            <div style="font-weight:600">Dina Riaty</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted)">Event Campus</div>
+                        </div>
+                    </div>
+                    <p>"Thanks Ngobrol Pake HT! Acara pensi kami sukses besar karena komunikasi lancar jaya."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container" id="contact">
+        <div class="cta-card">
+            <h2>Siap Mensukseskan Event Anda?</h2>
+            <p style="color:var(--text-muted); margin: 16px 0 32px">Booking unit sekarang sebelum kehabisan slot.
+                Konsultasi gratis!</p>
+            <a href="https://wa.me/6285155228041" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 48px">
+                <i data-lucide="message-circle"></i> Chat WhatsApp Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Ngobrol Pake HT</h3>
+                    <p>Partner komunikasi terpercaya untuk segala jenis event Anda. Unit berkualitas, harga bersahabat,
+                        pelayanan profesional.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#services">Layanan</a></li>
+                        <li><a href="#pricing">Harga</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6285155228041">+62 851-5522-8041</a></li>
+                        <li><a href="https://instagram.com/ngobrolpakeht">@ngobrolpakeht</a></li>
+                        <li>Jl. Radio Dalam No. 45, Jakarta Selatan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Ngobrol Pake HT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(5, 5, 7, 0.8)';
+                nav.style.padding = '12px 0';
+                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            } else {
+                nav.style.background = 'rgba(5, 5, 7, 0.0)'; // Transparent at top
+                nav.style.padding = '24px 0';
+                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0)';
+            }
+        });
+    </script>
+</body>
+
+</html>
