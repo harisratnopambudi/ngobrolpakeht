@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — HT-PRO Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:      #0f1117;
+            --surface: #1a1d2e;
+            --border:  #2d3148;
+            --accent:  #f59e0b;
+            --accent2: #3b82f6;
+            --text1:   #e2e8f0;
+            --text2:   #94a3b8;
+            --danger:  #ef4444;
+            --radius:  14px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Background decoration */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(245,158,11,.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59,130,246,.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .login-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 24px 64px rgba(0,0,0,.4);
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .login-logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: rgba(245,158,11,.15);
+            border-radius: 16px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .login-logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text1);
+            letter-spacing: -.3px;
+        }
+
+        .login-logo p {
+            font-size: .8rem;
+            color: var(--text2);
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--text2);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 11px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text1);
+            font-size: .9rem;
+            font-family: inherit;
+            transition: border-color .2s;
+            outline: none;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--accent);
+        }
+
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder {
+            color: var(--text2);
+            opacity: .5;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 42px;
+        }
+
+        .toggle-pw {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text2);
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            transition: color .2s;
+        }
+
+        .toggle-pw:hover { color: var(--text1); }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: #0f1117;
+            border: none;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: opacity .2s, transform .1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover { opacity: .9; }
+        .btn-login:active { transform: scale(.98); }
+        .btn-login:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .error-msg {
+            display: none;
+            background: rgba(239,68,68,.1);
+            border: 1px solid rgba(239,68,68,.3);
+            color: #fca5a5;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: .82rem;
+            margin-bottom: 16px;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .error-msg.show { display: flex; }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(15,17,23,.3);
+            border-top-color: #0f1117;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: .75rem;
+            color: var(--text2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="login-logo">
+        <div class="logo-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+        </div>
+        <h1>HT-PRO Manager</h1>
+        <p>Sistem Manajemen Sewa Handy Talkie</p>
+    </div>
+
+    <div class="error-msg" id="errorMsg">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
+        <span id="errorText"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="email@kamu.com" autocomplete="email">
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password"
+                   onkeydown="if(event.key==='Enter') doLogin()">
+            <button class="toggle-pw" onclick="togglePw()" type="button" tabindex="-1" title="Tampilkan password">
+                <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <button class="btn-login" id="loginBtn" onclick="doLogin()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
+        Masuk
+    </button>
+
+    <div class="login-footer">HT-PRO Manager &copy; 2025 • Akses terbatas</div>
+</div>
+
+<script>
+    /* ── Supabase config (same as supabase-client.js) ── */
+    const SB_URL = 'https://zdrhmnpjrjznickxnifh.supabase.co';
+    const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkcmhtbnBqcmp6bmlja3huaWZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NzU2MDYsImV4cCI6MjA4NjE1MTYwNn0.iwzOZj325ZkfghyGRl28rELN4T7COH5MkEp_IHJViVc';
+
+    const sbClient = supabase.createClient(SB_URL, SB_KEY);
+
+    /* If already logged in, go straight to app */
+    (async () => {
+        const { data: { session } } = await sbClient.auth.getSession();
+        if (session) window.location.replace('index.html');
+    })();
+
+    /* Toggle password visibility */
+    let pwVisible = false;
+    function togglePw() {
+        pwVisible = !pwVisible;
+        const input = document.getElementById('loginPassword');
+        input.type = pwVisible ? 'text' : 'password';
+        document.getElementById('eyeIcon').innerHTML = pwVisible
+            ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+               <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+               <line x1="1" y1="1" x2="23" y2="23"/>`
+            : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+    }
+
+    function showError(msg) {
+        document.getElementById('errorText').textContent = msg;
+        document.getElementById('errorMsg').classList.add('show');
+    }
+
+    function hideError() {
+        document.getElementById('errorMsg').classList.remove('show');
+    }
+
+    async function doLogin() {
+        hideError();
+        const email    = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const btn      = document.getElementById('loginBtn');
+
+        if (!email || !password) { showError('Email dan password wajib diisi.'); return; }
+
+        /* Loading state */
+        btn.disabled = true;
+        btn.innerHTML = '<div class="spinner"></div> Memproses...';
+
+        const { error } = await sbClient.auth.signInWithPassword({ email, password });
+
+        if (error) {
+            let msg = 'Login gagal. Periksa email dan password.';
+            if (error.message.includes('Invalid login')) msg = 'Email atau password salah.';
+            if (error.message.includes('Email not confirmed')) msg = 'Email belum dikonfirmasi.';
+            showError(msg);
+            btn.disabled = false;
+            btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/>
+                <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg> Masuk`;
+        } else {
+            /* Success → redirect to app */
+            window.location.replace('index.html');
+        }
+    }
+</script>
+
+</body>
+</html>

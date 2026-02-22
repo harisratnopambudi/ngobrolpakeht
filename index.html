@@ -1,0 +1,1023 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HT-PRO Manager Sistem Manajemen Sewa Handy Talkie</title>
+    <meta name="description" content="Sistem manajemen dan pembukuan bisnis sewa Handy Talkie profesional">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo" id="sidebarLogoContainer">
+            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"
+                    style="vertical-align:middle;margin-right:4px">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>HT-PRO</h2>
+            <p>Manajemen Sewa HT</p>
+        </div>
+        <nav>
+            <a class="active" data-page="dashboard" onclick="navigateTo('dashboard')"><span class="icon"><svg width="18"
+                        height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg></span>Dashboard</a>
+            <a data-page="inventory" onclick="navigateTo('inventory')"><span class="icon"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2" />
+                        <circle cx="12" cy="14" r="4" />
+                        <line x1="12" y1="6" x2="12" y2="6.01" />
+                    </svg></span>Inventori HT</a>
+            <a data-page="booking" onclick="navigateTo('booking')"><span class="icon"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                        <rect x="8" y="2" width="8" height="4" rx="1" />
+                    </svg></span>Booking</a>
+            <a data-page="calendar" onclick="navigateTo('calendar')"><span class="icon"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg></span>Kalender</a>
+            <a data-page="report" onclick="navigateTo('report')"><span class="icon"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg></span>Laporan</a>
+            <a data-page="voucher" onclick="navigateTo('voucher')"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3a2 2 0 0 0-2 2v4a1 1 0 0 0 1 1 1 1 0 0 1 0 2 1 1 0 0 0-1 1v4a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2v-4a1 1 0 0 0-1-1 1 1 0 0 1 0-2 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2z"/></svg></span>Voucher</a>
+            <a data-page="settings" onclick="navigateTo('settings')"><span class="icon"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg></span>Pengaturan</a>
+        </nav>
+        <div class="sidebar-footer" style="display:flex;flex-direction:column;gap:8px">
+            <button onclick="sb.logout()"
+                style="width:100%;padding:8px 12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;color:#fca5a5;font-size:.78rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s;font-family:inherit"
+                onmouseover="this.style.background='rgba(239,68,68,.2)'"
+                onmouseout="this.style.background='rgba(239,68,68,.1)'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Logout
+            </button>
+            <span style="font-size:.7rem;opacity:.5">v1.0 • HT-PRO Manager</span>
+        </div>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div style="display:flex;align-items:center;gap:12px">
+            <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><svg
+                    width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg></button>
+            <div class="brand" id="headerBrand"><strong>HT-PRO Manager</strong></div>
+        </div>
+        <div class="header-right">
+            <span class="date-display" id="headerDate"></span>
+            <button class="btn btn-primary btn-sm no-print" onclick="openBookingModal()"><svg width="14" height="14"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    style="vertical-align:middle;margin-right:2px">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg> Booking Baru</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- ===== DASHBOARD ===== -->
+        <section class="page active" id="page-dashboard">
+            <div class="page-title">
+                <h2>Dashboard</h2>
+                <p>Ringkasan bisnis sewa HT Anda</p>
+            </div>
+            <div id="dashAlerts"></div>
+            <div class="stat-grid" id="dashStats"></div>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Pendapatan Bulanan</h3>
+                    <div class="chart-container"><canvas id="chartRevenue"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Distribusi Unit</h3>
+                    <div class="donut-wrapper">
+                        <div class="donut-half">
+                            <div class="donut-label">📻 HT</div>
+                            <div style="position:relative;flex:1;width:100%;min-height:0"><canvas id="chartDistribution"></canvas></div>
+                        </div>
+                        <div class="donut-divider"></div>
+                        <div class="donut-half">
+                            <div class="donut-label">🎧 Aksesoris</div>
+                            <div style="position:relative;flex:1;width:100%;min-height:0"><canvas id="chartDistAcc"></canvas></div>
+                        </div>
+                    </div>
+                    <div class="donut-legend">
+                        <span><span class="donut-legend-dot" style="background:#22c55e"></span>Tersedia</span>
+                        <span><span class="donut-legend-dot" style="background:#f59e0b"></span>Disewa</span>
+                        <span><span class="donut-legend-dot" style="background:#ef4444"></span>Rusak</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-card" style="margin-bottom:24px">
+                <h3>Tren Order Mingguan</h3>
+                <div class="chart-container"><canvas id="chartTrend"></canvas></div>
+            </div>
+            <div class="table-card">
+                <h3>5 Booking Terbaru</h3>
+                <div class="table-scroll"><table>
+                    <thead>
+                        <tr>
+                            <th>Invoice</th>
+                            <th>Penyewa</th>
+                            <th>Unit HT</th>
+                            <th>Durasi</th>
+                            <th>Total</th>
+                            <th>Status Bayar</th>
+                            <th>Status Sewa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashRecentBookings"></tbody>
+                </table></div>
+            </div>
+        </section>
+
+        <!-- ===== INVENTORY ===== -->
+        <section class="page" id="page-inventory">
+            <div class="page-title">
+                <h2>Inventori HT</h2>
+                <p id="invCounter">0 unit tersedia dari 0 total</p>
+            </div>
+            <div class="toolbar no-print">
+                <div class="search-box"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg></span><input type="text" placeholder="Cari unit HT..." id="invSearch"
+                        oninput="renderInventory()"></div>
+                <div class="filter-group">
+                    <select id="invTypeFilter" onchange="renderInventory()">
+                        <option value="">Semua Tipe</option>
+                        <option value="ht">Unit HT</option>
+                        <option value="aksesoris">Aksesoris</option>
+                    </select>
+                    <select id="invFilter" onchange="renderInventory()">
+                        <option value="">Semua Status</option>
+                        <option value="Tersedia">Tersedia</option>
+                        <option value="Disewa">Disewa</option>
+                        <option value="Rusak">Rusak</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" onclick="openHTModal()"><svg width="14" height="14"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" style="vertical-align:middle;margin-right:2px">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg> Tambah HT</button>
+                </div>
+            </div>
+            <div class="inv-grid" id="invGrid"></div>
+        </section>
+
+        <!-- ===== BOOKING ===== -->
+        <section class="page" id="page-booking">
+            <div class="page-title">
+                <h2>Booking & Pemesanan</h2>
+                <p>Kelola semua transaksi sewa HT</p>
+            </div>
+            <div class="toolbar no-print">
+                <div class="search-box"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg></span><input type="text" placeholder="Cari booking..." id="bookSearch"
+                        oninput="renderBookings()"></div>
+                <div class="filter-group">
+                    <select id="bookFilterStatus" onchange="renderBookings()">
+                        <option value="">Semua Status Sewa</option>
+                        <option value="Aktif">Aktif</option>
+                        <option value="Selesai">Selesai</option>
+                        <option value="Dibatalkan">Dibatalkan</option>
+                    </select>
+                    <select id="bookFilterBayar" onchange="renderBookings()">
+                        <option value="">Semua Pembayaran</option>
+                        <option value="Lunas">Lunas</option>
+                        <option value="DP">DP</option>
+                        <option value="Belum Bayar">Belum Bayar</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" onclick="openBookingModal()"><svg width="14" height="14"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" style="vertical-align:middle;margin-right:2px">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg> Booking Baru</button>
+                    <button class="btn btn-secondary btn-sm" onclick="exportBookingsCSV()"><svg width="14" height="14"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="vertical-align:middle;margin-right:2px">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg> Export CSV</button>
+                </div>
+            </div>
+            <div id="bookSummary"></div>
+            <div class="table-card">
+                <div class="table-scroll"><table>
+                    <thead>
+                        <tr>
+                            <th>Invoice</th>
+                            <th>Penyewa</th>
+                            <th>Unit HT</th>
+                            <th>Mulai</th>
+                            <th>Selesai / Sisa</th>
+                            <th>Dur.</th>
+                            <th>Total</th>
+                            <th>Bayar</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== CALENDAR ===== -->
+        <section class="page" id="page-calendar">
+            <div class="page-title">
+                <h2>Kalender Booking</h2>
+                <p>Visualisasi jadwal sewa HT</p>
+            </div>
+            <div class="chart-card">
+                <div class="cal-header">
+                    <button class="btn-icon" onclick="calNav(-1)"><svg width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg></button>
+                    <h3 id="calTitle">Februari 2026</h3>
+                    <button class="btn-icon" onclick="calNav(1)"><svg width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg></button>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+                <div class="cal-legend" id="calLegend"></div>
+                <div style="text-align:center;margin-top:16px"><button class="btn btn-primary btn-sm no-print"
+                        onclick="openBookingModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            style="vertical-align:middle;margin-right:2px">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg> Tambah Booking Baru</button></div>
+            </div>
+        </section>
+
+        <!-- ===== REPORT ===== -->
+        <section class="page" id="page-report">
+            <div class="page-title">
+                <h2>Laporan Keuangan</h2>
+                <p>Analisis performa bisnis Anda</p>
+            </div>
+            <div class="toolbar no-print">
+                <div class="filter-group">
+                    <select id="reportPeriod" onchange="renderReport()">
+                        <option value="bulanan">Bulanan</option>
+                        <option value="tahunan">Tahunan</option>
+                        <option value="harian">Harian</option>
+                        <option value="mingguan">Mingguan</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                    <input type="date" id="reportFrom"
+                        style="padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text)"
+                        onchange="renderReport()">
+                    <input type="date" id="reportTo"
+                        style="padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text)"
+                        onchange="renderReport()">
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="printReport()"><svg width="14" height="14"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" style="vertical-align:middle;margin-right:2px">
+                        <polyline points="6 9 6 2 18 2 18 9" />
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                        <rect x="6" y="14" width="12" height="8" />
+                    </svg> Cetak Laporan</button>
+            </div>
+            <div class="report-summary" id="reportSummary"></div>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Pendapatan Bulanan</h3>
+                    <div class="chart-container"><canvas id="chartReportRevenue"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>HT Paling Sering Disewa</h3>
+                    <div class="chart-container"><canvas id="chartReportRanking"></canvas></div>
+                </div>
+            </div>
+            <div class="chart-card" style="margin-bottom:24px">
+                <h3>Perbandingan Pendapatan Tahunan</h3>
+                <div class="chart-container"><canvas id="chartReportYoY"></canvas></div>
+            </div>
+            <div class="table-card">
+                <h3>Detail Transaksi</h3>
+                <div class="table-scroll"><table>
+                    <thead>
+                        <tr>
+                            <th>Invoice</th>
+                            <th>Penyewa</th>
+                            <th>HT</th>
+                            <th>Durasi</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== VOUCHER ===== -->
+        <section class="page" id="page-voucher">
+            <div class="page-title">
+                <h2>Manajemen Voucher</h2>
+                <p>Buat dan kelola kode voucher diskon untuk promosi</p>
+            </div>
+            <div class="toolbar no-print">
+                <div class="search-box"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    <input type="text" placeholder="Cari kode voucher..." id="voucherSearch" oninput="renderVouchers()">
+                </div>
+                <div class="filter-group">
+                    <select id="voucherFilterStatus" onchange="renderVouchers()">
+                        <option value="">Semua Status</option>
+                        <option value="aktif">Aktif</option>
+                        <option value="nonaktif">Nonaktif / Expired</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" onclick="openVoucherModal()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:middle;margin-right:2px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Buat Voucher
+                    </button>
+                </div>
+            </div>
+            <div id="voucherStats"></div>
+            <div id="voucherGrid" style="margin-top:16px"></div>
+        </section>
+
+        <!-- ===== SETTINGS ===== -->
+        <section class="page" id="page-settings">
+            <div class="page-title">
+                <h2>Pengaturan</h2>
+                <p>Konfigurasi aplikasi HT-PRO Manager</p>
+            </div>
+            <div class="settings-section">
+                <h3>Informasi Bisnis</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Nama Bisnis</label><input type="text" id="setBizName"
+                            placeholder="Nama bisnis Anda"></div>
+                    <div class="form-group"><label>No. Telepon</label><input type="text" id="setBizPhone"
+                            placeholder="08xx"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Email</label><input type="email" id="setBizEmail"
+                            placeholder="email@domain.com"></div>
+                    <div class="form-group"><label>Alamat</label><input type="text" id="setBizAddress"
+                            placeholder="Alamat bisnis"></div>
+                </div>
+                <div class="form-group"><label>Logo Bisnis</label>
+                    <div class="img-upload" id="logoUpload" onclick="document.getElementById('logoInput').click()"><span
+                            class="upload-text"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="vertical-align:middle;margin-right:4px">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                <circle cx="12" cy="13" r="4" />
+                            </svg> Klik untuk upload logo</span></div><input type="file" id="logoInput" accept="image/*"
+                        hidden onchange="handleLogoUpload(event)">
+                </div>
+                <button class="btn btn-primary" onclick="saveSettings()"><svg width="14" height="14" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" style="vertical-align:middle;margin-right:2px">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                        <polyline points="17 21 17 13 7 13 7 21" />
+                        <polyline points="7 3 7 8 15 8" />
+                    </svg> Simpan Pengaturan</button>
+            </div>
+            <div class="settings-section">
+                <h3>Notifikasi</h3>
+                <div class="form-group"><label>Ingatkan X hari sebelum sewa berakhir</label><input type="number"
+                        id="setReminderDays" value="1" min="0" max="7"></div>
+                <button class="btn btn-primary btn-sm" onclick="saveSettings()"><svg width="14" height="14"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" style="vertical-align:middle;margin-right:2px">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                        <polyline points="17 21 17 13 7 13 7 21" />
+                        <polyline points="7 3 7 8 15 8" />
+                    </svg> Simpan</button>
+            </div>
+            <div class="settings-section">
+                <h3>Manajemen Data</h3>
+                <div class="settings-actions">
+                    <button class="btn btn-secondary" onclick="backupData()"><svg width="14" height="14"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="vertical-align:middle;margin-right:2px">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg> Backup Data (JSON)</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('restoreInput').click()"><svg
+                            width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="vertical-align:middle;margin-right:2px">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="17 8 12 3 7 8" />
+                            <line x1="12" y1="3" x2="12" y2="15" />
+                        </svg> Restore Data</button>
+                    <input type="file" id="restoreInput" accept=".json" hidden onchange="restoreData(event)">
+                    <button class="btn btn-danger" onclick="resetData()"><svg width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" style="vertical-align:middle;margin-right:2px">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        </svg> Reset Semua Data</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL: HT -->
+    <div class="modal-overlay" id="htModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="htModalTitle">Tambah Unit HT</h3><button class="modal-close"
+                    onclick="closeModal('htModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Tipe Item</label>
+                    <select id="htType" onchange="toggleHTTypeFields()">
+                        <option value="ht">Unit HT (Handy Talkie)</option>
+                        <option value="aksesoris">Aksesoris (Headset, Baterai, dll)</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Foto</label>
+                    <div class="img-upload" id="htImgUpload" onclick="document.getElementById('htImgInput').click()">
+                        <span class="upload-text"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="vertical-align:middle;margin-right:4px">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                <circle cx="12" cy="13" r="4" />
+                            </svg> Upload foto</span>
+                    </div><input type="file" id="htImgInput" accept="image/*" hidden onchange="handleHTImage(event)">
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="htMerk">Merk</label><input type="text" id="htMerk"
+                            placeholder="Motorola / Generic"></div>
+                    <div class="form-group"><label for="htModel">Model / Nama</label><input type="text" id="htModel"
+                            placeholder="DP1400 / Headset Standard"></div>
+                </div>
+                <div class="form-row" id="htFreqRow">
+                    <div class="form-group"><label>Frekuensi</label><input type="text" id="htFreq"
+                            placeholder="UHF/VHF"></div>
+                    <div class="form-group"><label>Kondisi</label><select id="htKondisi">
+                            <option>Baik</option>
+                            <option>Rusak Ringan</option>
+                            <option>Rusak</option>
+                        </select></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group"><label>Harga Sewa / Hari (Rp)</label><input type="number" id="htHargaHari"
+                            placeholder="50000"></div>
+                    <div class="form-group" id="htWeeklyRow"><label>Harga Sewa / Minggu (Rp)</label><input type="number"
+                            id="htHargaMinggu" placeholder="300000"></div>
+                </div>
+                <div class="form-group"><label>Jumlah Unit (Stok)</label><input type="number" id="htQty" min="1"
+                        value="1" placeholder="Jumlah total unit"></div>
+                <div class="form-group"><label>Catatan</label><textarea id="htCatatan"
+                        placeholder="Catatan tambahan..."></textarea></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-secondary"
+                    onclick="closeModal('htModal')">Batal</button><button class="btn btn-primary" id="htSaveBtn"
+                    onclick="saveHT()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align:middle;margin-right:2px">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                        <polyline points="17 21 17 13 7 13 7 21" />
+                        <polyline points="7 3 7 8 15 8" />
+                    </svg> Simpan</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL: BOOKING -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal" style="max-width:650px">
+            <div class="modal-header">
+                <h3 id="bookingModalTitle">Booking Baru</h3><button class="modal-close"
+                    onclick="closeModal('bookingModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group"><label>Nama Penyewa</label><input type="text" id="bkNama"
+                            placeholder="Nama lengkap"></div>
+                    <div class="form-group"><label>No. HP</label><input type="text" id="bkHP" placeholder="08xx"></div>
+                </div>
+                <div class="form-group"><label>Alamat</label><input type="text" id="bkAlamat"
+                        placeholder="Alamat penyewa"></div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Foto KTP</label>
+                        <div class="img-upload doc-upload" id="ktpImgUpload"
+                            onclick="document.getElementById('ktpImgInput').click()">
+                            <span class="upload-text" id="ktpText">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    style="vertical-align:middle;margin-right:4px">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                </svg> Upload KTP
+                            </span>
+                        </div>
+                        <input type="file" id="ktpImgInput" accept="image/*" hidden onchange="handleKTPUpload(event)">
+                    </div>
+                    <div class="form-group">
+                        <label>Foto Selfie</label>
+                        <div class="img-upload doc-upload" id="selfieImgUpload"
+                            onclick="document.getElementById('selfieImgInput').click()">
+                            <span class="upload-text" id="selfieText">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    style="vertical-align:middle;margin-right:4px">
+                                    <path
+                                        d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                    <circle cx="12" cy="13" r="4" />
+                                </svg> Upload Selfie
+                            </span>
+                        </div>
+                        <input type="file" id="selfieImgInput" accept="image/*" hidden
+                            onchange="handleSelfieUpload(event)">
+                    </div>
+                </div>
+
+                <div class="form-group"><label>Unit HT</label><select id="bkHT">
+                        <option value="">-- Pilih Unit HT --</option>
+                    </select></div>
+                <!-- Waktu mulai realtime (otomatis) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Waktu Mulai Sewa</label>
+                        <input type="text" id="bkWaktuMulai" readonly
+                            style="background:var(--bg);color:var(--accent);font-weight:600;cursor:default"
+                            placeholder="Otomatis saat booking dibuat">
+                    </div>
+                    <div class="form-group">
+                        <label>Durasi Sewa (hari)</label>
+                        <div style="display:flex;gap:6px;align-items:center">
+                            <button type="button" onclick="changeDurasi(-1)"
+                                style="width:36px;height:36px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text1);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit"
+                                onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">−</button>
+                            <input type="number" id="bkDurasi" min="1" value="1" oninput="onDurasiInput()" placeholder="Hari"
+                                style="text-align:center;font-weight:700;font-size:1rem;flex:1">
+                            <button type="button" onclick="changeDurasi(1)"
+                                style="width:36px;height:36px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text1);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit"
+                                onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tanggal Selesai</label>
+                        <input type="date" id="bkTanggalSelesai" oninput="onTanggalSelesaiChange()">
+                    </div>
+                    <div class="form-group">
+                        <label>Expire (otomatis)</label>
+                        <input type="text" id="bkExpireDisplay" readonly
+                            style="background:var(--bg);color:var(--text2);cursor:default"
+                            placeholder="Dihitung otomatis">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Jumlah Sewa</label>
+                        <input type="number" id="bkQty" min="1" value="1" oninput="calcBooking()" placeholder="Jumlah unit">
+                        <span id="bkAvailInfo" style="font-size:.75rem;display:block;margin-top:4px"></span>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+                <input type="hidden" id="bkDateRange">
+
+                <!-- ACCESSORIES PANEL -->
+                <div id="bkAccPanel" style="display:none">
+                    <div class="acc-panel-header" id="bkAccHeader">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="vertical-align:middle;margin-right:6px">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                            <path
+                                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                        </svg>
+                        Tambah Aksesoris <span
+                            style="font-size:.72rem;color:var(--text2);font-weight:400">(opsional)</span>
+                    </div>
+                    <div id="bkAccList"></div>
+                </div>
+
+                <!-- Hidden field for internal price calc -->
+                <input type="hidden" id="bkHargaHari">
+
+                <!-- PRICE BREAKDOWN -->
+                <div id="bkPriceBreakdown" class="price-breakdown" style="display:none"></div>
+
+                <!-- VOUCHER CODE INPUT -->
+                <div class="form-group" style="margin-bottom:8px">
+                    <label>Kode Voucher <span style="font-weight:400;color:var(--text2)">(opsional)</span></label>
+                    <div style="display:flex;gap:8px;align-items:center">
+                        <input type="text" id="bkVoucherCode" placeholder="Contoh: PROMO-ABCDEF" style="text-transform:uppercase;flex:1" oninput="this.value=this.value.toUpperCase()">
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="applyVoucherCode()" style="white-space:nowrap;padding:9px 14px">Terapkan</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="clearVoucher()" style="padding:9px 10px;opacity:.7" title="Hapus voucher">✕</button>
+                    </div>
+                    <div id="bkVoucherMsg" class="voucher-msg"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group"><label>Total Harga (Rp)</label><input type="number" id="bkTotal" readonly>
+                    </div>
+                    <div class="form-group"><label>Uang Muka / DP (Rp)</label><input type="number" id="bkDP" value="0"
+                            oninput="calcBooking()"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Sisa Bayar (Rp)</label><input type="number" id="bkSisa" readonly>
+                    </div>
+                    <div class="form-group"><label>Status Pembayaran</label><select id="bkStatusBayar">
+                            <option>Belum Bayar</option>
+                            <option>DP</option>
+                            <option>Lunas</option>
+                        </select></div>
+                </div>
+                <div class="form-group"><label>Keperluan / Acara</label><input type="text" id="bkKeperluan"
+                        placeholder="Acara outdoor, event, dll"></div>
+                <div class="form-group"><label>Catatan</label><textarea id="bkCatatan"
+                        placeholder="Catatan tambahan..."></textarea></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-secondary"
+                    onclick="closeModal('bookingModal')">Batal</button><button class="btn btn-primary" id="bkSaveBtn"
+                    onclick="saveBooking()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align:middle;margin-right:2px">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                        <polyline points="17 21 17 13 7 13 7 21" />
+                        <polyline points="7 3 7 8 15 8" />
+                    </svg> Simpan Booking</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL: DETAIL -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Detail Booking</h3><button class="modal-close" onclick="closeModal('detailModal')">✕</button>
+            </div>
+            <div class="modal-body" id="detailContent"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('detailModal')">Tutup</button>
+                <button class="btn btn-secondary no-print" id="detailPDFBtn" onclick="" style="color:var(--danger);border-color:rgba(239,68,68,.4)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+                    </svg> PDF
+                </button>
+                <button class="btn btn-primary no-print" id="detailPrintBtn" onclick="">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg> Cetak
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: VOUCHER -->
+    <div class="modal-overlay" id="voucherModal">
+        <div class="modal" style="max-width:520px">
+            <div class="modal-header">
+                <h3 id="voucherModalTitle">Buat Voucher Baru</h3>
+                <button class="modal-close" onclick="closeModal('voucherModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kode Voucher <span style="color:var(--danger)">*</span></label>
+                        <div style="display:flex;gap:8px">
+                            <input type="text" id="vcKode" placeholder="PROMO-ABCDEF" style="text-transform:uppercase;flex:1" oninput="this.value=this.value.toUpperCase()">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('vcKode').value=generateVoucherCode()" style="white-space:nowrap;padding:9px 12px">🎲 Generate</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama / Deskripsi Singkat</label>
+                        <input type="text" id="vcNama" placeholder="Promo akhir tahun, dll">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tipe Diskon</label>
+                        <select id="vcTipe" onchange="toggleVoucherTipeFields()">
+                            <option value="persen">Persentase (%)</option>
+                            <option value="nominal">Nominal Tetap (Rp)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="vcNilaiLabel">Diskon (%)</label>
+                        <input type="number" id="vcNilai" placeholder="10 (artinya 10%)" min="1">
+                    </div>
+                </div>
+                <div class="form-row" id="vcMaksDiskonRow">
+                    <div class="form-group">
+                        <label>Maksimal Diskon (Rp) <span style="color:var(--text2);font-weight:400">— opsional</span></label>
+                        <input type="number" id="vcMaksDiskon" placeholder="0 = tidak terbatas">
+                    </div>
+                    <div class="form-group">
+                        <label>Maks. Penggunaan <span style="color:var(--text2);font-weight:400">— opsional</span></label>
+                        <input type="number" id="vcMaksPenggunaan" placeholder="0 = tidak terbatas" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Berlaku Mulai <span style="color:var(--text2);font-weight:400">— opsional</span></label>
+                        <input type="date" id="vcTanggalMulai">
+                    </div>
+                    <div class="form-group">
+                        <label>Berlaku Sampai <span style="color:var(--text2);font-weight:400">— opsional</span></label>
+                        <input type="date" id="vcTanggalAkhir">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Deskripsi Lengkap <span style="color:var(--text2);font-weight:400">— opsional</span></label>
+                    <textarea id="vcDeskripsi" placeholder="Syarat dan ketentuan voucher..."></textarea>
+                </div>
+                <div class="form-group" style="display:flex;align-items:center;gap:10px">
+                    <input type="checkbox" id="vcAktif" checked style="width:16px;height:16px;accent-color:var(--accent);cursor:pointer">
+                    <label for="vcAktif" style="text-transform:none;letter-spacing:0;font-size:.9rem;font-weight:500;cursor:pointer;margin:0">Voucher langsung aktif</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('voucherModal')">Batal</button>
+                <button class="btn btn-primary" onclick="saveVoucher()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    Simpan Voucher
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM DIALOG -->
+    <div class="confirm-overlay" id="confirmDialog">
+        <div class="confirm-box">
+            <div class="confirm-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12" y2="17.01" />
+                </svg></div>
+            <h4 id="confirmTitle">Konfirmasi</h4>
+            <p id="confirmMsg">Apakah Anda yakin?</p>
+            <div class="confirm-actions"><button class="btn btn-secondary btn-sm"
+                    onclick="closeConfirm()">Batal</button><button class="btn btn-danger btn-sm" id="confirmYes"
+                    onclick="">Ya, Lanjutkan</button></div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION (Mobile) -->
+    <!-- SIDEBAR OVERLAY (mobile tap-to-close) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="bottom-nav-inner">
+            <button class="bottom-nav-item active" id="bnav-dashboard" onclick="navigateTo('dashboard')" title="Dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                <span class="nav-label">Beranda</span>
+            </button>
+            <button class="bottom-nav-item" id="bnav-inventory" onclick="navigateTo('inventory')" title="Inventori">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/>
+                    <line x1="12" y1="6" x2="12" y2="6.01"/>
+                </svg>
+                <span class="nav-label">Inventori</span>
+            </button>
+            <button class="bottom-nav-item" id="bnav-booking" onclick="navigateTo('booking')" title="Booking">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                    <rect x="8" y="2" width="8" height="4" rx="1"/>
+                </svg>
+                <span class="nav-label">Booking</span>
+            </button>
+            <button class="bottom-nav-item" id="bnav-report" onclick="navigateTo('report')" title="Laporan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"/>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                <span class="nav-label">Laporan</span>
+            </button>
+            <button class="bottom-nav-item" id="bnav-more" onclick="toggleMoreMenu()" title="Lainnya">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>
+                </svg>
+                <span class="nav-label">Lainnya</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MORE MENU OVERLAY + POPUP -->
+    <div class="more-menu-overlay" id="moreMenuOverlay" onclick="closeMoreMenu()"></div>
+    <div class="more-menu-popup" id="moreMenuPopup">
+        <button class="more-menu-item" id="mmenu-calendar" onclick="navigateTo('calendar');closeMoreMenu()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Kalender
+        </button>
+        <button class="more-menu-item" id="mmenu-voucher" onclick="navigateTo('voucher');closeMoreMenu()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 5H3a2 2 0 0 0-2 2v4a1 1 0 0 0 1 1 1 1 0 0 1 0 2 1 1 0 0 0-1 1v4a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2v-4a1 1 0 0 0-1-1 1 1 0 0 1 0-2 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2z"/>
+            </svg>
+            Voucher
+        </button>
+        <div class="more-menu-divider"></div>
+        <button class="more-menu-item" id="mmenu-settings" onclick="navigateTo('settings');closeMoreMenu()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            Pengaturan
+        </button>
+    </div>
+
+    <!-- FAB - New Booking (Mobile) -->
+    <button class="fab-booking no-print" onclick="openBookingModal()" title="Booking Baru" aria-label="Booking Baru">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+    </button>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- PRINT INVOICE TEMPLATE (hidden) -->
+    <div id="printArea" style="display:none"></div>
+
+    <script>
+    /* ── Sidebar toggle (mobile) ── */
+    function openSidebar() {
+        document.getElementById('sidebar').classList.add('open');
+        document.getElementById('sidebarOverlay').classList.add('show');
+    }
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('show');
+    }
+    // Wire hamburger button to openSidebar
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.querySelector('.mobile-toggle');
+        if (toggle) toggle.onclick = openSidebar;
+    });
+
+    /* ── Fix layout after orientation change ── */
+    function fixViewportAfterRotate() {
+        // Force browser to recalculate fixed elements
+        document.body.style.display = 'none';
+        // eslint-disable-next-line no-unused-expressions
+        document.body.offsetHeight; // trigger reflow
+        document.body.style.display = '';
+
+        // Close sidebar and more menu if open (they may be mis-positioned)
+        closeSidebar();
+        closeMoreMenu();
+
+        // Re-set CSS variable for safe areas in case they changed
+        const nav = document.getElementById('bottomNav');
+        if (nav) {
+            nav.style.left = '0';
+            nav.style.right = '0';
+        }
+    }
+
+    // Listen for orientation change (primary) and resize (fallback)
+    window.addEventListener('orientationchange', () => {
+        // Wait for browser to finish rotating before fixing
+        setTimeout(fixViewportAfterRotate, 300);
+        setTimeout(fixViewportAfterRotate, 600); // double-fire for slow devices
+    });
+
+    // Also handle resize (covers desktop and Android)
+    let _resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(_resizeTimer);
+        _resizeTimer = setTimeout(fixViewportAfterRotate, 200);
+    });
+
+    /* ── More Menu ── */
+    const _MORE_PAGES = ['calendar', 'voucher', 'settings'];
+    function toggleMoreMenu() {
+        const popup = document.getElementById('moreMenuPopup');
+        const overlay = document.getElementById('moreMenuOverlay');
+        const isOpen = popup.classList.contains('show');
+        if (isOpen) { closeMoreMenu(); } else {
+            popup.classList.add('show');
+            overlay.classList.add('show');
+            document.getElementById('bnav-more').classList.add('active');
+        }
+    }
+    function closeMoreMenu() {
+        document.getElementById('moreMenuPopup').classList.remove('show');
+        document.getElementById('moreMenuOverlay').classList.remove('show');
+        // Only remove 'more' active if current page is not a more-menu page
+        const lastPage = localStorage.getItem('lastPage') || 'dashboard';
+        if (!_MORE_PAGES.includes(lastPage)) {
+            document.getElementById('bnav-more').classList.remove('active');
+        }
+    }
+
+    /* ── Bottom Nav Sync ── */
+    document.addEventListener('DOMContentLoaded', () => {
+        const _patchNav = () => {
+            if (typeof navigateTo !== 'function') { setTimeout(_patchNav, 200); return; }
+            const _orig = navigateTo;
+            window.navigateTo = function(page) {
+                _orig(page);
+                closeSidebar();
+                // Update bottom nav active state
+                document.querySelectorAll('.bottom-nav-item').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Highlight 'More' button if page is in more-menu group
+                if (_MORE_PAGES.includes(page)) {
+                    document.getElementById('bnav-more')?.classList.add('active');
+                    // Also highlight the specific more-menu item
+                    document.querySelectorAll('.more-menu-item').forEach(item => {
+                        item.classList.toggle('active-item', item.id === 'mmenu-' + page);
+                    });
+                } else {
+                    const btn = document.getElementById('bnav-' + page);
+                    if (btn) btn.classList.add('active');
+                    document.querySelectorAll('.more-menu-item').forEach(item => item.classList.remove('active-item'));
+                }
+            };
+        };
+        _patchNav();
+    });
+    </script>
+    <script src="assets/icons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/report.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/voucher.js"></script>
+    <script src="js/main.js"></script>
+    <!-- PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+
+</html>
